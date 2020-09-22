@@ -11,7 +11,7 @@
         :key="todo.id" 
         class="todo-item">
       <div class="card">
-        <div class="todo-item-left">
+        <div class="">
             <div class="card-content"
                     v-if="!todo.editing"
                     @dblclick="editTodo(todo)">
@@ -27,17 +27,23 @@
             </div>
         </div>
         <label>
-                        <input type="checkbox" v-model="todo.completed">
-                        <span></span>
-                    </label>
-      <div class="remove-item" @click="removeTodo(index)">
+            <input type="checkbox" v-model="todo.completed">
+            <span></span>
+        </label>
+        <div class="remove-item" @click="removeTodo(index)">
         &times;
       </div>
+      
     </div>
     </transition-group>
 
     <div class="extra-container">
-      <div><label><input type="checkbox" :checked="!anyRemaining" @change="checkAllTodos"> Check All</label></div>
+        <div>
+            <label>
+                <input type="checkbox" :checked="!anyRemaining" @change="checkAllTodos"/>
+                <span>Check All</span>
+            </label>
+        </div>
       <div>{{ remaining }} items left</div>
     </div>
 
@@ -70,13 +76,13 @@ export default {
       todos: [
         {
           'id': 1,
-          'title': 'Finish Vue Screencast',
+          'title': 'Finish Vue',
           'completed': false,
           'editing': false,
         },
         {
           'id': 2,
-          'title': 'Take over world',
+          'title': 'start django',
           'completed': false,
           'editing': false,
         },
@@ -158,6 +164,12 @@ export default {
 <style lang="scss">
   @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css");
 
+  .card {
+      margin: 10px;
+      width: 90%;
+      text-align: left;
+  }
+
   .todo-input {
     width: 100%;
     padding: 10px 18px;
@@ -168,18 +180,18 @@ export default {
       outline: 0;
     }
   }
-
   .todo-item {
     margin-bottom: 12px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     animation-duration: 0.3s;
   }
 
   .remove-item {
     cursor: pointer;
-    margin-left: 14px;
+    display: inline-block;
+    margin-right: 20px;
     &:hover {
       color: black;
     }
